@@ -1,5 +1,5 @@
 ::main load
-@echo off
+@echo on
 set defloc=%~dp0
 ::call FS file if not exist then create it
 if not exist filesystem.bat goto :installfs
@@ -8,7 +8,7 @@ call filesystem.bat checkup
 goto :start
 
 :installfs
-if not exist powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/help.db', 'help.db')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/help.db', 'help.db')"
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/filesystem.bat', 'filesystem.bat')"
 echo $info-    Installed filesystem.bat
 goto :contfscheck
