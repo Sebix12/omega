@@ -1,5 +1,5 @@
 ::main load
-@echo off
+@echo ON
 ::call FS file if not exist then create it
 if not exist filesystem.bat goto :installfs
 :contfscheck
@@ -66,6 +66,11 @@ goto :execcommand
 :execcommand
 if "%terminal%" equ "fs" goto :fsexeccmd
 if "%terminal%" equ "exit" exit
+if "%terminal%" equ "help" type help.db
+::try DataBase
+cd db
+call decryptorb8.bat %terminal%
+::end databasecode
 goto :terminal
 
 :fsexeccmd
