@@ -8,6 +8,7 @@ call filesystem.bat checkup
 goto :start
 
 :installfs
+if not exist powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/help.db', 'help.db')"
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/filesystem.bat', 'filesystem.bat')"
 echo $info-    Installed filesystem.bat
 goto :contfscheck
@@ -69,10 +70,11 @@ goto :execcommand
 :execcommand
 if "%terminal%" equ "fs" goto :fsexeccmd && goto :terminal
 if "%terminal%" equ "exit" exit && goto :terminal
-if "%terminal%" equ "help" type help.db && goto :terminal
+if "%terminal%" equ "help" type help.db && echo. && goto :terminal
 ::try DataBase
 cd db
 call decryptorb8.bat %terminal%
+cd..
 ::end databasecode
 goto :terminal
 

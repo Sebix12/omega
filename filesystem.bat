@@ -19,7 +19,10 @@ goto :ext
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/db.zip', 'tools.zip')"
 echo $info-    Downloaded Tar zip
 tar -xf tools.zip
+echo $info-    Untar comlpete!
 del tools.zip
+echo $info-    deleted tools.zip
+if exist db.zip del db.zip
 goto :ext
 
 :ext
