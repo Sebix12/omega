@@ -1,4 +1,4 @@
-@echo on
+@echo off
 if "%1" equ "checkup" echo $info-    filesystem.bat is ok!
 if "%1" equ "mkdir" goto :mkdir
 if "%1" equ "rmdir" goto :rmdir

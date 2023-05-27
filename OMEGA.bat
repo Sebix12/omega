@@ -65,12 +65,13 @@ goto :execcommand
 
 :execcommand
 if "%terminal%" equ "fs" goto :fsexeccmd
+if "%terminal%" equ "exit" exit
 goto :terminal
 
 :fsexeccmd
 echo Select command for FS exec
-set /p tempchoice=$FS">"
+set /p tempchoice=$FS">
 echo Select subvalue for FS exec (if needed)
-set /p fssubvar=$FS/subvar">"
-call filesystem.bat %tempchoice% %subvar%
+set /p fssubvar=$FS/subvar">
+call filesystem.bat %tempchoice% %fssubvar%
 goto :terminal
