@@ -17,7 +17,7 @@ goto :ext
 
 :gettools
 cd db
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/db.zip', 'tools.zip')"
+::powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/db.zip', 'tools.zip')"
 echo $info-    Downloaded Tar zip
 tar -xf tools.zip
 del tools.zip

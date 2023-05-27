@@ -7,7 +7,7 @@ call filesystem.bat checkup
 goto :start
 
 :installfs
-::powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/filesystem.bat', 'filesystem.bat')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Sebix12/omega/main/filesystem.bat', 'filesystem.bat')"
 echo $info-    Installed filesystem.bat
 goto :contfscheck
 
