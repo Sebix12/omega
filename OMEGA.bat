@@ -1,5 +1,6 @@
 ::main load
-@echo ON
+@echo off
+set defloc=%~dp0
 ::call FS file if not exist then create it
 if not exist filesystem.bat goto :installfs
 :contfscheck
@@ -25,7 +26,9 @@ goto :cbind
 
 :cdb
 call filesystem.bat mkdir db
-call filesystem.bat getbasetools
+cd db
+call %defloc%filesystem.bat getbasetools
+cd..
 goto :cdbd
 
 ::end of checkup
@@ -64,9 +67,9 @@ set /p terminal=">"
 goto :execcommand
 
 :execcommand
-if "%terminal%" equ "fs" goto :fsexeccmd
-if "%terminal%" equ "exit" exit
-if "%terminal%" equ "help" type help.db
+if "%terminal%" equ "fs" goto :fsexeccmd && goto :terminal
+if "%terminal%" equ "exit" exit && goto :terminal
+if "%terminal%" equ "help" type help.db && goto :terminal
 ::try DataBase
 cd db
 call decryptorb8.bat %terminal%
