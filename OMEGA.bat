@@ -31,8 +31,8 @@ goto :cdbd
 ::end of checkup
 :mainexec
 ::import config if exist
-if exist config.bat call config.bat
-if not exist config.bat :atcconf
+if exist config.bat goto :confexst
+if not exist config.bat goto :atcconf
 
 :atcconf
 echo.
@@ -42,16 +42,35 @@ if "%tempchoice%" equ "y" goto :cconfig
 if "%tempchoice%" equ "n" goto :sconfig
 
 :sconfig
+set tempchoice=
 echo Skipping!
 echo.
 goto :terminal
 
 :cconfig
-echo set defloc=%~dp0
+set tempchoice=
+echo set defloc=%~dp0 >> config.bat
 echo done!
 echo.
+goto :mainexec
+
+:confexst
+echo loading config!
+call config.bat
 goto :terminal
 
 :terminal
-pause
-exit
+set /p terminal=">"
+goto :execcommand
+
+:execcommand
+if "%terminal%" equ "fs" goto :fsexeccmd
+goto :terminal
+
+:fsexeccmd
+echo Select command for FS exec
+set /p tempchoice=$FS">"
+echo Select subvalue for FS exec (if needed)
+set /p fssubvar=$FS/subvar">"
+call filesystem.bat %tempchoice% %subvar%
+goto :terminal
